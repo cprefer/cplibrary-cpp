@@ -18,6 +18,8 @@ jobs:
 
       - run: pip3 install -r requirements.txt
 
+      - run: cp .verify-helper/remote.toml .verify-helper/config.toml
+
       - name: oj-verify
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
