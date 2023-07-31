@@ -1,0 +1,37 @@
+name: deploy
+
+on: push
+
+permissions: write-all
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      # It seems that v3 can not be used.
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10.6"
+
+      - run: pip3 install -r requirements.txt
+
+      - name: oj-verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: oj-verify all
+
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: .verify-helper/markdown
+          destination: ./_site
+
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./_site
+
+      - uses: actions/deploy-pages@v2
+        with:
+          token: ${{ github.token }}
