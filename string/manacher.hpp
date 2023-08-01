@@ -2,7 +2,7 @@
 using namespace std;
 vector<int> manacher(const string &s, char filler = 0) {
   string t(2 * s.size() + 1, filler);
-  for (int i = 0; i < (int)s.size(); i += 1) {
+  for (int i = 0; i < ssize(s); i += 1) {
     t[2 * i + 1] = s[i];
   }
   int n = t.size();
