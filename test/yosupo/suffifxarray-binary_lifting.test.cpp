@@ -9,7 +9,7 @@ int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   string s;
   cin >> s;
-  auto suffix_array = binary_lifting(s);
+  auto suffix_array = binary_lifting(s).first;
   for (int x : suffix_array) {
     cout << x << " ";
   }

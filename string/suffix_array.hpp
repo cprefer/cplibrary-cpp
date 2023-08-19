@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> binary_lifting(const string &s) {
+pair<vector<int>, vector<int>> binary_lifting(const string &s) {
   int n = s.size(), k = 0;
   vector<int> p(n), rank(n), q, count;
   iota(p.begin(), p.end(), 0);
@@ -35,5 +35,17 @@ vector<int> binary_lifting(const string &s) {
                        : k++;
     }
   }
-  return p;
+  vector<int> lcp(n);
+  k = 0;
+  for (int i = 0; i < n; i += 1) {
+    if (rank[i]) {
+      k = max(k - 1, 0);
+      int j = p[rank[i] - 1];
+      while (i + k < n and j + k < n and s[i + k] == s[j + k]) {
+        k += 1;
+      }
+      lcp[rank[i]] = k;
+    }
+  }
+  return {p, lcp};
 }
