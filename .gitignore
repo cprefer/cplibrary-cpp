@@ -1,5 +1,6 @@
 .vscode
 main.cpp
+bundle.cpp
 main.in
 main
 Makefile
