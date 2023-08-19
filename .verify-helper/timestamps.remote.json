@@ -1,8 +1,3 @@
 {
-"aizu/projection.test.cpp": "2023-07-31 12:32:57 +0800",
-"yosupo/aplusb.test.cpp": "2023-07-31 10:28:19 +0800",
-"yosupo/enumerate_palindromes.test.cpp": "2023-08-01 14:45:20 +0800",
-"yosupo/many_aplusb.test.cpp": "2023-07-31 12:32:57 +0800",
-"yosupo/vertex_add_range_contour_sum_on_tree.test.cpp": "2023-08-01 14:45:20 +0800",
-"yosupo/zalogrithm.test.cpp": "2023-08-01 10:14:35 +0800"
+"test/yosupo/zalgorithm.test.cpp": "2023-08-19 11:33:14 +0800"
 }
