@@ -60,23 +60,34 @@ template <typename mint> struct RelaxedConvolution {
   mint get(const mint &ai, const mint &bi) {
     a.push_back(ai);
     b.push_back(bi);
-    for (int i = 1; i < (n + 2) and (n + 2) % i == 0; i *= 2) {
-      c.resize(max((int)c.size(), n + i * 2 - 1));
-      if (i * 2 == (n + 2)) {
-        auto ab = convolution(vector<mint>{a.end() - i, a.end()}, vector<mint>{b.end() - i, b.end()});
-        for (int j = 0; j < i * 2 - 1; j += 1) {
-          c[n + j] += ab[j];
+    c.push_back(0);
+    c.push_back(0);
+    n += 1;
+    if (n % 4) {
+      if (n < 4) {
+        for (int i = 0; i < n; i += 1) {
+          c[n - 1] += a[i] * b[n - 1 - i];
         }
       } else {
-        auto ab =
-            convolution(vector<mint>{a.end() - i, a.end()}, vector<mint>{b.begin() + i - 1, b.begin() + 2 * i - 1});
-        auto ba =
-            convolution(vector<mint>{b.end() - i, b.end()}, vector<mint>{a.begin() + i - 1, a.begin() + 2 * i - 1});
-        for (int j = 0; j < i * 2 - 1; j += 1) {
-          c[n + j] += ab[j] + ba[j];
+        for (int i = 0; i < n % 4; i += 1) {
+          c[n - 1] += a[i] * b[n - 1 - i] + a[n - 1 - i] * b[i];
+        }
+      }
+    } else {
+      int m = n & -n;
+      if (m == n) {
+        auto ab = convolution(a, b);
+        for (int i = n - 1; i < 2 * n - 1; i += 1) {
+          c[i] += ab[i];
+        }
+      } else {
+        auto ab = convolution(vector<mint>{a.begin(), a.begin() + 2 * m - 1}, vector<mint>{b.end() - m, b.end()});
+        auto ba = convolution(vector<mint>{b.begin(), b.begin() + 2 * m - 1}, vector<mint>{a.end() - m, a.end()});
+        for (int i = n - 1; i < n + m - 1; i += 1) {
+          c[i] += ab[i - (n - m)] + ba[i - (n - m)];
         }
       }
     }
-    return c[n++];
+    return c[n - 1];
   }
 };
