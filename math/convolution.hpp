@@ -22,8 +22,9 @@ template <typename T, T mod, T g> void fft(vector<ModInt<T, mod, g>> &a, const v
     for (int i = 0; i < n; i += m * 2) {
       mint w(1);
       for (int j = 0; j < m; j += 1, w *= _w) {
-        auto &x = a[i + j + m], &y = a[i + j];
-        tie(x, y) = pair(y - w * x, y + w * x);
+        auto &x = a[i + j + m], &y = a[i + j], t = w * x;
+        x = y - t;
+        y += t;
       }
     }
   }
@@ -51,3 +52,31 @@ vector<ModInt<T, mod, g>> convolution(vector<ModInt<T, mod, g>> a, vector<ModInt
   a.resize(m);
   return a;
 }
+
+template <typename mint> struct RelaxedConvolution {
+  int n;
+  vector<mint> a, b, c;
+  RelaxedConvolution() : n(0) {}
+  mint get(const mint &ai, const mint &bi) {
+    a.push_back(ai);
+    b.push_back(bi);
+    for (int i = 1; i < (n + 2) and (n + 2) % i == 0; i *= 2) {
+      c.resize(max((int)c.size(), n + i * 2 - 1));
+      if (i * 2 == (n + 2)) {
+        auto ab = convolution(vector<mint>{a.end() - i, a.end()}, vector<mint>{b.end() - i, b.end()});
+        for (int j = 0; j < i * 2 - 1; j += 1) {
+          c[n + j] += ab[j];
+        }
+      } else {
+        auto ab =
+            convolution(vector<mint>{a.end() - i, a.end()}, vector<mint>{b.begin() + i - 1, b.begin() + 2 * i - 1});
+        auto ba =
+            convolution(vector<mint>{b.end() - i, b.end()}, vector<mint>{a.begin() + i - 1, a.begin() + 2 * i - 1});
+        for (int j = 0; j < i * 2 - 1; j += 1) {
+          c[n + j] += ab[j] + ba[j];
+        }
+      }
+    }
+    return c[n++];
+  }
+};
