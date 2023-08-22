@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\geometry{paperheight=21cm, paperwidth=29.7cm, left=1cm, right=1cm, top=1cm, bottom=1cm}
+\setlength{\columnsep}{2cm}
+\pagestyle{fancy}
+\fancyhead[L]{Team Reference Document}
+\fancyhead[R]{\thepage}
+\fancyfoot{}
+\lstset{
+    language     = C++,
+    basicstyle   = \tt\scriptsize,
+    frame        = shadowbox,
+    numbers      = left,
+    breaklines   = true,
+    keywordstyle = \color{blue},
+    commentstyle = \color{red}
+}
+\begin{document}
+\title{Team Reference Document}
+\author{cprefer}
+\maketitle
+\newpage
+\begin{multicols}{2}
+    \tableofcontents
+    \section{String}
+    \subsection{Z}
+    \lstinputlisting{string/z.hpp}
+    \subsection{Manacher}
+    \lstinputlisting{string/manacher.hpp}
+    \subsection{Suffix Array}
+    \lstinputlisting{string/suffix_array.hpp}
+    \subsection{Lyndon Factorization}
+    \lstinputlisting{string/lyndon.hpp}
+\end{multicols}
+\end{document}

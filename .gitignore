@@ -4,3 +4,12 @@ bundle.cpp
 main.in
 main
 Makefile
+
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
