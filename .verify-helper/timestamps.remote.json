@@ -1,9 +1,10 @@
 {
+"test/yosupo/biconnected_components.test.cpp": "2023-08-25 10:48:28 +0800",
 "test/yosupo/enumerate_palindromes.test.cpp": "2023-08-19 11:42:34 +0800",
 "test/yosupo/lyndon_factorization.test.cpp": "2023-08-21 12:21:51 +0800",
 "test/yosupo/number_of_substrings.test.cpp": "2023-08-20 03:21:20 +0800",
 "test/yosupo/scc.test.cpp": "2023-08-22 14:45:26 +0800",
 "test/yosupo/suffifxarray-binary_lifting.test.cpp": "2023-08-20 03:21:20 +0800",
-"test/yosupo/tcc.test.cpp": "2023-08-25 10:33:19 +0800",
+"test/yosupo/two_edge_connected_components.test.cpp": "2023-08-25 10:48:28 +0800",
 "test/yosupo/zalgorithm.test.cpp": "2023-08-19 11:33:14 +0800"
 }
